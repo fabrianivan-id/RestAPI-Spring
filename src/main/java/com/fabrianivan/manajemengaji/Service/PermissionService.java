@@ -1,44 +1,47 @@
 package com.fabrianivan.manajemengaji.Service;
 
+import com.fabrianivan.manajemengaji.Entity.Employee;
 import com.fabrianivan.manajemengaji.Entity.Permission;
+import com.fabrianivan.manajemengaji.Entity.Role;
+import com.fabrianivan.manajemengaji.Repository.EmployeeRepository;
 import com.fabrianivan.manajemengaji.Repository.PermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.transaction.Transactional;
+import java.util.*;
 
 @Service
 @Transactional
 public class PermissionService {
-
-    private static PermissionRepository permissionRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public PermissionService(PermissionRepository permissionRepository) {
-        PermissionService.permissionRepository = permissionRepository;
+    public PermissionService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
-
-    public List<Permission> getAllPermissions() {
-        return permissionRepository.findAll();
-    }
-    public static class PermissionNotFoundException extends RuntimeException {
-
-        public PermissionNotFoundException(Long id) {
-            super("Could not find permission " + id);
+    /*
+    @Override
+    public boolean hasPermission(Long id, String permission) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+        if (employee.isPresent()) {
+            Set<Role> roles = employee.get().getRoles();
+            for (Role role : roles) {
+                Set<Permission> permissions = role.getPermissions();
+                for (Permission p : permissions) {
+                    if (p.getName().equals(permission)) {
+                        return true;
+                    }
+                }
+            }
         }
+        return false;
     }
 
-    public static Permission getPermissionById(Long id) {
-        return permissionRepository.findById(id).orElseThrow(() -> new PermissionNotFoundException(id));
+
+    public Permission createPermission(Permission permission){
+        return  permissionRepository.save(permission);
     }
 
-    public Permission addPermission(Permission permission) {
-        return permissionRepository.save(permission);
-    }
-
-    public void deletePermissionById(Long id) {
-        permissionRepository.deleteById(id);
-    }
-
+     */
 }
