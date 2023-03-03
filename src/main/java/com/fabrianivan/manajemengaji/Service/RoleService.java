@@ -17,7 +17,7 @@ public class RoleService {
     private RoleRepository roleRepository;
     @Autowired
     private PermissionRepository permissionRepository;
-    public Role CreateRoles(Role role){
+    public Role CreateRole(Role role){
         return roleRepository.save(role);
     }
 

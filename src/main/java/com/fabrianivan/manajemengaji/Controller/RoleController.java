@@ -1,15 +1,17 @@
 package com.fabrianivan.manajemengaji.Controller;
 
+import com.fabrianivan.manajemengaji.Entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/roles")
 public class RoleController {
-    /*
     @Autowired
-    private RoleService roleService;
+    private roleService RoleService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable(value = "id") Long id) {
@@ -37,8 +39,7 @@ public class RoleController {
     }
     @PostMapping("/assign")
     private ResponseEntity<?> AssignPermission(@RequestBody  Map<String,Object> roles){
-        roleService.assignPermission(roles);
+        roleService.assignPermission(role);
         return ResponseEntity.ok().build();
 
-     */
 }
